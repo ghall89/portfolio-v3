@@ -1,9 +1,9 @@
 import Layout from '../components/Layout';
 
-const Home = () => (
+const Blog = () => (
   <Layout>
-    <h1>Hello Homepage</h1>
+    <h1>Hello Blog</h1>
   </Layout>
 );
 
-export default Home;
+export default Blog;
