@@ -1,9 +1,10 @@
-import Layout from '../components/Layout';
+import Layout from '../src/components/Layout';
+import Home from '../src/components/Home';
 
-const Home = () => (
+const Homepage = () => (
   <Layout>
-    <h1>Hello Homepage</h1>
+    <Home />
   </Layout>
 );
 
-export default Home;
+export default Homepage;
