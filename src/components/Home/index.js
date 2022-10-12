@@ -8,8 +8,10 @@ const Home = () => (
       Hey there! I'm Graham, and I'm a Front-End Web Developer from Rhode
       Island.
     </h3>
-    <div className="grid grid-cols-2">
-      <div></div>
+    <div className="flex">
+      <div className="mr-9">
+        <Image src="/img/portrait_y8yaqq.jpg" height={400} width={400} />
+      </div>
       <div>
         <Paragraph>
           I created my first website when I was in middle school, and even
