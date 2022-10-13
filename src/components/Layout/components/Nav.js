@@ -23,6 +23,7 @@ const Nav = () => {
   return (
     <nav className="flex flex-row gap-8 mt-8">
       <NavItem href="/" label="Home" />
+      <NavItem href="/work" label="My Work" />
       <NavItem href="/blog" label="Blog" />
     </nav>
   );
