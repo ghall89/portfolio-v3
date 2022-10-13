@@ -1,10 +1,10 @@
 import Layout from '../src/components/Layout';
 import Portfolio from '../src/components/Portfolio';
 
-const Work = () => (
+const WorkPage = () => (
   <Layout>
     <Portfolio />
   </Layout>
 );
 
-export default Work;
+export default WorkPage;

@@ -1,10 +1,10 @@
 import Layout from '../src/components/Layout';
 import Home from '../src/components/Home';
 
-const Homepage = () => (
+const HomePage = () => (
   <Layout>
     <Home />
   </Layout>
 );
 
-export default Homepage;
+export default HomePage;

@@ -1,9 +1,10 @@
 import Layout from '../src/components/Layout';
+import Blog from '../src/components/Blog';
 
-const Blog = () => (
+const BlogPage = () => (
   <Layout>
-    <h1>Hello Blog</h1>
+    <Blog />
   </Layout>
 );
 
-export default Blog;
+export default BlogPage;

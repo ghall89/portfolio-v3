@@ -1,10 +1,10 @@
 import Layout from '../src/components/Layout';
 import FourOhFour from '../src/components/404';
 
-const NotFound = () => (
+const NotFoundPage = () => (
   <Layout>
     <FourOhFour />
   </Layout>
 );
 
-export default NotFound;
+export default NotFoundPage;

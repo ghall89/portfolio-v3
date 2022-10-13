@@ -37,7 +37,7 @@ const Home = () => (
         </P>
         <P>
           When I'm not writing code you can find me playing video games, hiking,
-          and trying to improve my cooking skills!
+          and trying to improve my cooking and art skills!
         </P>
       </div>
     </div>
