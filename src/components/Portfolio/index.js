@@ -9,7 +9,7 @@ import { H4 } from '../sharedComponents/Typography';
 
 const PortfolioButton = ({ href, children }) => (
   <Link href={href} target="_blank">
-    <span className="text-blue-400 border-2 border-blue-400 py-1 w-full text-center rounded-md hover:bg-blue-400 hover:text-white transition-colors cursor-pointer">
+    <span className="text-blue-400 bg-white shadow py-1 w-full text-center rounded-md hover:bg-blue-400 hover:text-white transition-colors cursor-pointer">
       {children}
     </span>
   </Link>
@@ -30,7 +30,7 @@ const Portfolio = () => {
           {portfolio.map((item) => (
             <div
               key={item.slug}
-              className="p-4 bg-slate-100 rounded-md flex flex-col"
+              className="p-4 bg-slate-100 border rounded-md flex flex-col"
             >
               <div className="mb-4">
                 <Image

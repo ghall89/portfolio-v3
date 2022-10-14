@@ -25,9 +25,9 @@ const Nav = () => {
   };
 
   return (
-    <nav className="flex flex-row gap-8 mt-8">
+    <nav className="flex flex-row gap-8 mt-8 justify-self-end">
       <NavItem href="/" label="Home" />
-      <NavItem href="/work" label="My Work" />
+      <NavItem href="/projects" label="Projects" />
       <NavItem href="/blog" label="Blog" />
     </nav>
   );

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { P, H3, InlineLink } from '../sharedComponents/Typography';
 
 const Home = () => (
-  <>
+  <div>
     <H3 className="text-center">
       Hey there! I&apos;m Graham, and I&apos;m a Front-End Web Developer from
       Rhode Island.
@@ -41,7 +41,7 @@ const Home = () => (
         </P>
       </div>
     </div>
-  </>
+  </div>
 );
 
 export default Home;
