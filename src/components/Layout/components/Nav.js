@@ -8,14 +8,18 @@ const Nav = () => {
   const NavItem = ({ href, label }) => {
     const isActivePath = useMemo(() => {
       if (router.pathname === href) {
-        return 'underline underline-offset-4 decoration-4 cursor-pointer';
+        return 'decoration-4';
       }
-      return 'underline underline-offset-4 hover:decoration-4 cursor-pointer';
+      return 'hover:decoration-4';
     }, [href]);
 
     return (
       <Link href={href}>
-        <span className={isActivePath}>{label}</span>
+        <span
+          className={`underline underline-offset-4 cursor-pointer ${isActivePath}`}
+        >
+          {label}
+        </span>
       </Link>
     );
   };

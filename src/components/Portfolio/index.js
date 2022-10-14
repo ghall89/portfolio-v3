@@ -1,11 +1,19 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { getPortfolio } from '../../lib/cosmicApi';
 import parseHtml from '../../lib/parseHtml';
 
-import { H4, InlineLink } from '../sharedComponents/Typography';
-import { data } from 'autoprefixer';
+import { H4 } from '../sharedComponents/Typography';
+
+const PortfolioButton = ({ href, children }) => (
+  <Link href={href} target="_blank">
+    <span className="text-blue-400 border-2 border-blue-400 py-1 w-full text-center rounded-md hover:bg-blue-400 hover:text-white transition-colors cursor-pointer">
+      {children}
+    </span>
+  </Link>
+);
 
 const Portfolio = () => {
   const [portfolio, setPortfolio] = useState([]);
@@ -20,7 +28,10 @@ const Portfolio = () => {
       {loading ? null : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {portfolio.map((item) => (
-            <div key={item.slug} className="p-4 bg-slate-100 flex flex-col">
+            <div
+              key={item.slug}
+              className="p-4 bg-slate-100 rounded-md flex flex-col"
+            >
               <div className="mb-4">
                 <Image
                   src={item.metadata.image.url}
@@ -29,18 +40,18 @@ const Portfolio = () => {
                   width={1280 / 2}
                 />
               </div>
-              <H4>{item.title}</H4>
+              <H4 className="text-gray-600">{item.title}</H4>
               <div className="flex-grow">{parseHtml(item.content)}</div>
-              <div className="flex flex-row space-x-7">
+              <div className="flex flex-row space-x-4 justify-center">
                 {item.metadata.project_url ? (
-                  <InlineLink href={item.metadata.project_url} target="_blank">
+                  <PortfolioButton href={item.metadata.project_url}>
                     Visit Page
-                  </InlineLink>
+                  </PortfolioButton>
                 ) : null}
                 {item.metadata.github_url ? (
-                  <InlineLink href={item.metadata.github_url} target="_blank">
+                  <PortfolioButton href={item.metadata.github_url}>
                     Github Repo
-                  </InlineLink>
+                  </PortfolioButton>
                 ) : null}
               </div>
             </div>
