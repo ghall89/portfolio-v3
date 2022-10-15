@@ -25,4 +25,13 @@ const InlineLink = ({ href, target, children }) => (
   </Link>
 );
 
-export { H1, H2, H3, H4, P, InlineLink };
+const LinkButton = ({ onClick, children }) => (
+  <button
+    className="text-sky-500 underline hover:text-sky-800 cursor-pointer"
+    onClick={onClick}
+  >
+    {children}
+  </button>
+);
+
+export { H1, H2, H3, H4, P, InlineLink, LinkButton };

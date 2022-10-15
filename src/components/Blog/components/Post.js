@@ -1,6 +1,9 @@
 import { format } from 'date-fns';
 import { useEffect, useState } from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+
 import { getBlogPost } from '../../../lib/cosmicApi';
 
 import { H3 } from '../../sharedComponents/Typography';
@@ -25,7 +28,7 @@ const Post = ({ slug }) => {
             <>
               <H3>{blogPost.objects[0].title}</H3>
               <span className="text-sky-800">
-                Posted on{' '}
+                <FontAwesomeIcon icon={faCalendarAlt} /> Posted on{' '}
                 {format(
                   new Date(blogPost.objects[0].metadata.post_date),
                   'MMM Lo, y'
