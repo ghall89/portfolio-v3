@@ -1,3 +1,4 @@
 import Nav from './Nav';
+import Footer from './Footer';
 
-export { Nav };
+export { Footer, Nav };

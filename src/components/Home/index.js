@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { P, H3, InlineLink } from '../sharedComponents/Typography';
 
 const Home = () => (
-  <>
+  <div>
     <H3 className="text-center">
       Hey there! I&apos;m Graham, and I&apos;m a Front-End Web Developer from
       Rhode Island.
@@ -11,6 +11,7 @@ const Home = () => (
     <div className="flex flex-col md:flex-row">
       <div className="mx-auto md:mr-9 p-6 min-w-fit">
         <Image
+          className="rounded"
           src="/img/portrait_y8yaqq.jpg"
           alt="portrait of Graham"
           height={240}
@@ -41,7 +42,7 @@ const Home = () => (
         </P>
       </div>
     </div>
-  </>
+  </div>
 );
 
 export default Home;
