@@ -7,13 +7,8 @@ module.exports = {
   theme: {
     extend: {
       transitionProperty: {
-        width: 'width',
+        multiple: 'width , height',
       },
-    },
-  },
-  variants: {
-    extend: {
-      transitionProperty: ['hover'],
     },
   },
   plugins: [require('tailwind-gradient-mask-image')],

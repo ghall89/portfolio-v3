@@ -38,7 +38,11 @@ const Blog = () => {
                     <FontAwesomeIcon icon={faCalendarAlt} /> Posted on{' '}
                     {format(new Date(post.metadata.post_date), 'MMM Lo, y')}
                   </span>
-                  <article className={`mb-7 ${isExpanded(post.slug)}`}>
+                  <article
+                    className={`mb-7 transition-[height] ${isExpanded(
+                      post.slug
+                    )}`}
+                  >
                     <ParsedJSX input={post.content} />
                   </article>
                   {!selectedPost ? (
