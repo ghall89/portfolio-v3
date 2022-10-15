@@ -1,6 +1,8 @@
 import Image from 'next/image';
+import { faDisplay, faServer } from '@fortawesome/free-solid-svg-icons';
 
 import { P, H3, InlineLink } from '../sharedComponents/Typography';
+import Card from './components/Card';
 
 const Home = () => (
   <div>
@@ -41,6 +43,30 @@ const Home = () => (
           hiking, and trying to improve my cooking and art skills!
         </P>
       </div>
+    </div>
+    <div className="mt-4">
+      <H3 className="text-center">About This Website</H3>
+      <div className="mt-3 flex flex-col lg:flex-row">
+        <Card title="Front-End" icon={faDisplay}>
+          <P>
+            Everything you see on the front-end is powered by Next.js, a React
+            framework.
+          </P>
+        </Card>
+        <Card title="Back-End" icon={faServer}>
+          <P>
+            All the content on the{' '}
+            <InlineLink href="/projects">Projects</InlineLink> and{' '}
+            <InlineLink href="/blog">Blog</InlineLink> pages is served by
+            Cosmic, a headless CMS.
+          </P>
+        </Card>
+      </div>
+      <P>
+        For more information on the how and why of my tech stack, check out{' '}
+        <InlineLink href="#">this blog post</InlineLink> about building this
+        iteration of my website.
+      </P>
     </div>
   </div>
 );
