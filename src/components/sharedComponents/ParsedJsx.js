@@ -19,9 +19,6 @@ const convertString = (string) =>
 
 const ParsedJSX = ({ input }) => {
   const jsx = convertString(input);
-
-  console.log(jsx);
-
   return <JsxParser components={{ P, H1, H2, H3, H4, InlineLink }} jsx={jsx} />;
 };
 

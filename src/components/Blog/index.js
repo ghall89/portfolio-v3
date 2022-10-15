@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { getBlogPosts } from '../../lib/cosmicApi';
-import parseHtml from '../../lib/parseHtml';
+import ParsedJSX from '../sharedComponents/ParsedJsx';
 
 import { H3, InlineLink } from '../sharedComponents/Typography';
 
@@ -28,8 +28,8 @@ const Blog = () => {
                 <FontAwesomeIcon icon={faCalendarAlt} /> Posted on{' '}
                 {format(new Date(post.metadata.post_date), 'MMM Lo, y')}
               </span>
-              <article>
-                {parseHtml(`${post.content.substr(0, 400)}...</p>`)}
+              <article className="gradient-mask-b-0 max-h-52 overflow-hidden mb-7">
+                <ParsedJSX input={post.content} />
               </article>
               <InlineLink href={`./blog/${post.slug}`}>Read More...</InlineLink>
             </div>

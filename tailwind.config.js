@@ -16,5 +16,5 @@ module.exports = {
       transitionProperty: ['hover'],
     },
   },
-  plugins: [],
+  plugins: [require('tailwind-gradient-mask-image')],
 };
