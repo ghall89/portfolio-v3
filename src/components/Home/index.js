@@ -11,6 +11,7 @@ const Home = () => (
     <div className="flex flex-col md:flex-row">
       <div className="mx-auto md:mr-9 p-6 min-w-fit">
         <Image
+          className="rounded"
           src="/img/portrait_y8yaqq.jpg"
           alt="portrait of Graham"
           height={240}

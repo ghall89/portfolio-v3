@@ -1,9 +1,4 @@
-import Link from 'next/link';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
-
-import { Nav } from './components';
+import { Footer, Nav } from './components';
 
 const Layout = ({ children }) => (
   <div className="min-h-screen flex flex-col">
@@ -18,24 +13,7 @@ const Layout = ({ children }) => (
       </div>
     </header>
     <div className="max-w-6xl	mx-auto px-8 flex-grow">{children}</div>
-    <footer className="p-10 mt-10">
-      <div className="max-w-6xl	mx-auto px-8">
-        <div className="flex flex-row space-x-5 text-2xl">
-          <Link href="#">
-            <div className="w-6 overflow-hidden	hover:w-fit transition-width flex flex-nowrap">
-              <FontAwesomeIcon icon={faLinkedin} />
-              <span className="pl-2 text-base">/ghalldev</span>
-            </div>
-          </Link>
-          <Link href="#">
-            <div className="w-6 overflow-hidden	hover:w-fit transition-width flex flex-nowrap">
-              <FontAwesomeIcon icon={faGithub} />
-              <span className="pl-2 text-base">/ghall89</span>
-            </div>
-          </Link>
-        </div>
-      </div>
-    </footer>
+    <Footer />
   </div>
 );
 

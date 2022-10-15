@@ -34,6 +34,7 @@ const Portfolio = () => {
             >
               <div className="mb-4">
                 <Image
+                  className="rounded"
                   src={item.metadata.image.url}
                   alt={`screenshot of ${item.title}`}
                   height={1024 / 2}

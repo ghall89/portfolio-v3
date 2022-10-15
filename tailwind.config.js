@@ -7,8 +7,13 @@ module.exports = {
   theme: {
     extend: {
       transitionProperty: {
-        'width': 'width',
+        width: 'width',
       },
+    },
+  },
+  variants: {
+    extend: {
+      transitionProperty: ['hover'],
     },
   },
   plugins: [],
