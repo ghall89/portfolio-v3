@@ -2,7 +2,12 @@ import { useEffect, useState } from 'react';
 import { format } from 'date-fns';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+import {
+  faAngleLeft,
+  faCalendarAlt,
+  faLink,
+  faUpRightFromSquare,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { getBlogPosts } from '../../lib/cosmicApi';
 import ParsedJSX from '../sharedComponents/ParsedJsx';
@@ -20,9 +25,9 @@ const Blog = () => {
 
   const isExpanded = (slug) => {
     if (slug === selectedPost) {
-      return '';
+      return 'h-fit';
     }
-    return 'gradient-mask-b-0 max-h-52 overflow-hidden';
+    return 'gradient-mask-b-0 h-52 overflow-hidden';
   };
 
   return (
@@ -47,15 +52,16 @@ const Blog = () => {
                   </article>
                   {!selectedPost ? (
                     <LinkButton onClick={() => setSelectedPost(post.slug)}>
-                      Read More...
+                      <FontAwesomeIcon icon={faUpRightFromSquare} /> Read
+                      More...
                     </LinkButton>
                   ) : (
                     <div className="flex flex-row gap-5">
                       <LinkButton onClick={() => setSelectedPost()}>
-                        Close
+                        <FontAwesomeIcon icon={faAngleLeft} /> Back
                       </LinkButton>
                       <InlineLink href={`/blog/${post.slug}`}>
-                        Permalink
+                        <FontAwesomeIcon icon={faLink} /> Permalink
                       </InlineLink>
                     </div>
                   )}

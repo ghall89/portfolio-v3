@@ -1,5 +1,8 @@
 import Link from 'next/link';
 
+const linkClasses =
+  'transition-colors text-sky-500 hover:text-sky-800 cursor-pointer';
+
 const H1 = ({ children, className }) => (
   <h1 className={`font-medium text-4xl ${className}`}>{children}</h1>
 );
@@ -19,17 +22,12 @@ const P = ({ children, className }) => (
 
 const InlineLink = ({ href, target, children }) => (
   <Link href={href} target={target}>
-    <span className="text-sky-500 underline hover:text-sky-800 cursor-pointer">
-      {children}
-    </span>
+    <span className={linkClasses}>{children}</span>
   </Link>
 );
 
 const LinkButton = ({ onClick, children }) => (
-  <button
-    className="text-sky-500 underline hover:text-sky-800 cursor-pointer"
-    onClick={onClick}
-  >
+  <button className={linkClasses} onClick={onClick}>
     {children}
   </button>
 );
