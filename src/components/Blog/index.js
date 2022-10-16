@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { format } from 'date-fns';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -14,7 +14,13 @@ import { getBlogPosts } from '../../lib/cosmicApi';
 import ParsedJSX from '../sharedComponents/ParsedJsx';
 
 import { H3, InlineLink, LinkButton } from '../sharedComponents/Typography';
-import { he } from 'date-fns/locale';
+
+const linkAnimation = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+  transition: { type: 'ease-in-out', duration: 0.5 },
+};
 
 const Blog = () => {
   const [blogPosts, setBlogPosts] = useState();
@@ -71,20 +77,40 @@ const Blog = () => {
                 >
                   <ParsedJSX input={post.content} />
                 </motion.article>
-                {!selectedPost ? (
-                  <LinkButton onClick={() => setSelectedPost(post.slug)}>
-                    <FontAwesomeIcon icon={faUpRightFromSquare} /> Read More...
-                  </LinkButton>
-                ) : (
-                  <div className="flex flex-row gap-5">
-                    <LinkButton onClick={() => setSelectedPost()}>
-                      <FontAwesomeIcon icon={faAngleLeft} /> Back
-                    </LinkButton>
-                    <InlineLink href={`/blog/${post.slug}`}>
-                      <FontAwesomeIcon icon={faLink} /> Permalink
-                    </InlineLink>
-                  </div>
-                )}
+                <AnimatePresence mode="wait">
+                  {!selectedPost || selectedPost !== post.slug ? (
+                    <motion.div
+                      key="read-more"
+                      variants={linkAnimation}
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
+                      transition="transition"
+                    >
+                      <LinkButton onClick={() => setSelectedPost(post.slug)}>
+                        <FontAwesomeIcon icon={faUpRightFromSquare} /> Read
+                        More...
+                      </LinkButton>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="close"
+                      className="flex flex-row gap-5"
+                      variants={linkAnimation}
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
+                      transition="transition"
+                    >
+                      <LinkButton onClick={() => setSelectedPost()}>
+                        <FontAwesomeIcon icon={faAngleLeft} /> Back
+                      </LinkButton>
+                      <InlineLink href={`/blog/${post.slug}`}>
+                        <FontAwesomeIcon icon={faLink} /> Permalink
+                      </InlineLink>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </motion.div>
           ))}
