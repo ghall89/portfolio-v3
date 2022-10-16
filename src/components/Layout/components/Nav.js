@@ -16,7 +16,7 @@ const Nav = () => {
     return (
       <Link href={href}>
         <span
-          className={`border-b-4 underline-offset-4 cursor-pointer transition-colors ${isActivePath}`}
+          className={`border-b-4 underline-offset-4 cursor-pointer transition-colors ${isActivePath} dark:text-white`}
         >
           {label}
         </span>

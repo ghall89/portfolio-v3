@@ -27,7 +27,7 @@ const Post = ({ slug }) => {
           ) : (
             <>
               <H3>{blogPost.objects[0].title}</H3>
-              <span className="text-sky-800">
+              <span className="text-sky-800 dark:text-sky-200">
                 <FontAwesomeIcon icon={faCalendarAlt} /> Posted on{' '}
                 {format(
                   new Date(blogPost.objects[0].metadata.post_date),
