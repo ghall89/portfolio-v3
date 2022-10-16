@@ -3,9 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { getPortfolio } from '../../lib/cosmicApi';
-import parseHtml from '../../lib/parseHtml';
 
 import { H4 } from '../sharedComponents/Typography';
+import ParsedJSX from '../sharedComponents/ParsedJsx';
 
 const PortfolioButton = ({ href, children }) => (
   <Link href={href} target="_blank">
@@ -42,7 +42,9 @@ const Portfolio = () => {
                 />
               </div>
               <H4 className="text-gray-600">{item.title}</H4>
-              <div className="flex-grow">{parseHtml(item.content)}</div>
+              <div className="flex-grow">
+                <ParsedJSX input={item.content} />
+              </div>
               <div className="flex flex-row space-x-4 justify-center">
                 {item.metadata.project_url ? (
                   <PortfolioButton href={item.metadata.project_url}>

@@ -1,10 +1,13 @@
 import { format } from 'date-fns';
 import { useEffect, useState } from 'react';
 
-import parseHtml from '../../../lib/parseHtml';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+
 import { getBlogPost } from '../../../lib/cosmicApi';
 
-import { H3, InlineLink, P } from '../../sharedComponents/Typography';
+import { H3 } from '../../sharedComponents/Typography';
+import ParsedJSX from '../../sharedComponents/ParsedJsx';
 import FourOhFour from '../../404';
 
 const Post = ({ slug }) => {
@@ -14,10 +17,6 @@ const Post = ({ slug }) => {
   useEffect(() => {
     getBlogPost(setBlogPost, setLoading, slug);
   }, [slug]);
-
-  useEffect(() => {
-    console.log(blogPost);
-  }, [blogPost]);
 
   return (
     <>
@@ -29,13 +28,15 @@ const Post = ({ slug }) => {
             <>
               <H3>{blogPost.objects[0].title}</H3>
               <span className="text-sky-800">
-                Posted on{' '}
+                <FontAwesomeIcon icon={faCalendarAlt} /> Posted on{' '}
                 {format(
                   new Date(blogPost.objects[0].metadata.post_date),
                   'MMM Lo, y'
                 )}
               </span>
-              <article>{parseHtml(blogPost.objects[0].content)}</article>
+              <article>
+                <ParsedJSX input={blogPost.objects[0].content} />
+              </article>
             </>
           )}
         </>
