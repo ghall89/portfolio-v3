@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { format } from 'date-fns';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -14,6 +15,13 @@ import ParsedJSX from '../sharedComponents/ParsedJsx';
 
 import { H3, InlineLink, LinkButton } from '../sharedComponents/Typography';
 
+const linkAnimation = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+  transition: { type: 'ease-in-out', duration: 0.5 },
+};
+
 const Blog = () => {
   const [blogPosts, setBlogPosts] = useState();
   const [loading, setLoading] = useState(true);
@@ -23,11 +31,25 @@ const Blog = () => {
     getBlogPosts(setBlogPosts, setLoading);
   }, []);
 
+  const setGradient = (slug) => {
+    if (slug === selectedPost) {
+      return '';
+    }
+    return 'gradient-mask-b-0';
+  };
+
   const isExpanded = (slug) => {
     if (slug === selectedPost) {
-      return 'h-fit';
+      return { height: 'fit-content' };
     }
-    return 'gradient-mask-b-0 h-52 overflow-hidden';
+    return { height: '208px' };
+  };
+
+  const isHidden = (slug) => {
+    if (selectedPost && slug !== selectedPost) {
+      return { height: '0px', opacity: 0 };
+    }
+    return { height: 'fit-content', opacity: 1 };
   };
 
   return (
@@ -35,39 +57,62 @@ const Blog = () => {
       {loading ? null : (
         <>
           {blogPosts.objects.map((post) => (
-            <div key={post.slug}>
-              {!selectedPost || selectedPost === post.slug ? (
-                <div className="mb-10 p-3 border rounded-md">
-                  <H3>{post.title}</H3>
-                  <span className="text-sky-800">
-                    <FontAwesomeIcon icon={faCalendarAlt} /> Posted on{' '}
-                    {format(new Date(post.metadata.post_date), 'MMM Lo, y')}
-                  </span>
-                  <article
-                    className={`mb-7 transition-[height] ${isExpanded(
-                      post.slug
-                    )}`}
-                  >
-                    <ParsedJSX input={post.content} />
-                  </article>
-                  {!selectedPost ? (
-                    <LinkButton onClick={() => setSelectedPost(post.slug)}>
-                      <FontAwesomeIcon icon={faUpRightFromSquare} /> Read
-                      More...
-                    </LinkButton>
+            <motion.div
+              key={post.slug}
+              initial={{ height: 'fit-content', opacity: 1 }}
+              animate={isHidden(post.slug)}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="mb-10 p-3 border rounded-md">
+                <H3>{post.title}</H3>
+                <span className="text-sky-800">
+                  <FontAwesomeIcon icon={faCalendarAlt} /> Posted on{' '}
+                  {format(new Date(post.metadata.post_date), 'MMM Lo, y')}
+                </span>
+                <motion.article
+                  className={`mb-7 overflow-hidden ${setGradient(post.slug)}`}
+                  initial={{ height: '208px' }}
+                  animate={isExpanded(post.slug)}
+                  transition={{ duration: 0.5 }}
+                >
+                  <ParsedJSX input={post.content} />
+                </motion.article>
+                <AnimatePresence mode="wait">
+                  {!selectedPost || selectedPost !== post.slug ? (
+                    <motion.div
+                      key="read-more"
+                      variants={linkAnimation}
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
+                      transition="transition"
+                    >
+                      <LinkButton onClick={() => setSelectedPost(post.slug)}>
+                        <FontAwesomeIcon icon={faUpRightFromSquare} /> Read
+                        More...
+                      </LinkButton>
+                    </motion.div>
                   ) : (
-                    <div className="flex flex-row gap-5">
+                    <motion.div
+                      key="close"
+                      className="flex flex-row gap-5"
+                      variants={linkAnimation}
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
+                      transition="transition"
+                    >
                       <LinkButton onClick={() => setSelectedPost()}>
                         <FontAwesomeIcon icon={faAngleLeft} /> Back
                       </LinkButton>
                       <InlineLink href={`/blog/${post.slug}`}>
                         <FontAwesomeIcon icon={faLink} /> Permalink
                       </InlineLink>
-                    </div>
+                    </motion.div>
                   )}
-                </div>
-              ) : null}
-            </div>
+                </AnimatePresence>
+              </div>
+            </motion.div>
           ))}
         </>
       )}
