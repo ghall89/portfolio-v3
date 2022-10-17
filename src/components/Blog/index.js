@@ -63,14 +63,16 @@ const Blog = () => {
               animate={isHidden(post.slug)}
               transition={{ duration: 0.5 }}
             >
-              <div className="mb-10 p-3 border rounded-md">
+              <div className="mb-10 p-3 border rounded-md dark:border-slate-500">
                 <H3>{post.title}</H3>
-                <span className="text-sky-800">
+                <span className="text-sky-800 dark:text-sky-200">
                   <FontAwesomeIcon icon={faCalendarAlt} /> Posted on{' '}
                   {format(new Date(post.metadata.post_date), 'MMM Lo, y')}
                 </span>
                 <motion.article
-                  className={`mb-7 overflow-hidden ${setGradient(post.slug)}`}
+                  className={`transition-[margin] mb-7 overflow-hidden ${setGradient(
+                    post.slug
+                  )}`}
                   initial={{ height: '208px' }}
                   animate={isExpanded(post.slug)}
                   transition={{ duration: 0.5 }}
