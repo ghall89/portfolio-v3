@@ -15,7 +15,7 @@ const SocialLink = ({ href, icon, label }) => (
 );
 
 const Footer = () => (
-  <footer className="p-10 mt-10 bg-slate-800">
+  <footer className="p-10 mt-10 bg-slate-800 z-50">
     <div className="max-w-6xl	mx-auto px-8 flex flex-col md:flex-row">
       <div className="flex flex-row space-x-5 text-2xl">
         <SocialLink

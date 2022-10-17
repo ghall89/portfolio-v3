@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faSun,
@@ -11,6 +11,7 @@ import { Footer, Nav } from './components';
 
 const Layout = ({ children }) => {
   const [darkMode, setDarkMode] = useState(false);
+  // const [darkModeLs, setDarkModeLs] = useState();
 
   const enableDarkMode = () => {
     if (darkMode) {
@@ -26,17 +27,30 @@ const Layout = ({ children }) => {
     return faSun;
   };
 
+  // useEffect(() => setDarkModeLs(localStorage.getItem('darkMode')));
+
+  // useEffect(() => {
+  //   if (darkModeLs !== null) {
+  //     setDarkMode(darkModeLs);
+  //   }
+  // }, [darkModeLs]);
+
+  const handleDarkModeToggle = () => {
+    setDarkMode(!darkMode);
+    localStorage.setItem('darkMode', !darkMode);
+  };
+
   return (
     <div className={`${enableDarkMode()}`}>
       <div className="min-h-screen flex flex-col dark:bg-slate-700 dark:text-white">
         <header className="p-10 mb-10 border-b w-full bg-slate-50 dark:bg-slate-800 dark:border-slate-600">
           <div className="max-w-6xl	mx-auto px-8 flex flex-col md:flex-row">
-            <button
+            {/* <button
               className="mx-6 text-lg dark:text-white"
-              onClick={() => setDarkMode(!darkMode)}
+              onClick={() => handleDarkModeToggle()}
             >
               <FontAwesomeIcon icon={darkModeIcon()} />
-            </button>
+            </button> */}
             <div>
               <h1 className="text-3xl text-slate-600 dark:text-slate-300">
                 Graham Hall
@@ -49,7 +63,9 @@ const Layout = ({ children }) => {
             <Nav />
           </div>
         </header>
-        <div className="max-w-6xl	mx-auto px-8 flex-grow">{children}</div>
+        <div className="max-w-6xl	mx-auto px-8 flex-grow grid grid-cols-1 place-content-center">
+          {children}
+        </div>
         <Footer />
       </div>
     </div>
