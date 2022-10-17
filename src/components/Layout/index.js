@@ -63,7 +63,7 @@ const Layout = ({ children }) => {
             <Nav />
           </div>
         </header>
-        <div className="max-w-6xl	mx-auto px-8 flex-grow grid grid-cols-1 place-content-center">
+        <div className="max-w-6xl	mx-auto px-8 flex-grow flex flex-col justify-center items-center">
           {children}
         </div>
         <Footer />
