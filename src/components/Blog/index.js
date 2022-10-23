@@ -8,12 +8,15 @@ import {
 	faCalendarAlt,
 	faLink,
 	faUpRightFromSquare,
+	faArrowLeft,
+	faArrowRight,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { getBlogPosts } from '../../lib/cosmicApi';
 import ParsedJSX from '../sharedComponents/ParsedJsx';
 
 import { H3, InlineLink, LinkButton } from '../sharedComponents/Typography';
+import { Button } from '../sharedComponents/Inputs';
 
 const linkAnimation = {
 	initial: { opacity: 0 },
@@ -26,10 +29,11 @@ const Blog = () => {
 	const [blogPosts, setBlogPosts] = useState();
 	const [loading, setLoading] = useState(true);
 	const [selectedPost, setSelectedPost] = useState();
+	const [offset, setOffset] = useState(0);
 
 	useEffect(() => {
-		getBlogPosts(setBlogPosts, setLoading);
-	}, []);
+		getBlogPosts(setBlogPosts, setLoading, offset);
+	}, [offset]);
 
 	const setGradient = slug => {
 		if (slug === selectedPost) {
@@ -119,6 +123,21 @@ const Blog = () => {
 							</div>
 						</motion.div>
 					))}
+					{selectedPost ? null : (
+						<div className="flex flex-row">
+							{offset === 0 ? null : (
+								<Button onClick={() => setOffset(offset - 5)}>
+									<FontAwesomeIcon icon={faArrowLeft} /> Prev
+								</Button>
+							)}
+							<div className="flex-grow" />
+							{blogPosts.total <= offset + 5 ? null : (
+								<Button onClick={() => setOffset(offset + 5)}>
+									Next <FontAwesomeIcon icon={faArrowRight} />
+								</Button>
+							)}
+						</div>
+					)}
 				</>
 			)}
 		</>

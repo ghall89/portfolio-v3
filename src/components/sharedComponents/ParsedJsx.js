@@ -19,9 +19,7 @@ const convertString = string =>
 		.replaceAll('</a', '</InlineLink')
 		.replaceAll('<ul', '<List')
 		.replaceAll('</ul', '</List')
-		.replaceAll('<ol', '<NumList')
-		.replaceAll('</ol', '</NumList');
-
+		.replaceAll('<ol', '<NumList');
 const ParsedJSX = ({ input }) => {
 	const jsx = convertString(input);
 	return (

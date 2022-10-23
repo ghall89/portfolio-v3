@@ -22,7 +22,7 @@ const Post = ({ slug }) => {
 		<>
 			{loading ? null : (
 				<>
-					{blogPost.total === 0 ? (
+					{!blogPost ? (
 						<FourOhFour />
 					) : (
 						<>
@@ -34,7 +34,6 @@ const Post = ({ slug }) => {
 									'MMM Lo, y',
 								)}
 							</span>
-
 							<article>
 								<ParsedJSX input={blogPost.objects[0].content} />
 							</article>
