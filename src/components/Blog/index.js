@@ -47,19 +47,22 @@ const Blog = () => {
 
 	const isHidden = slug => {
 		if (selectedPost && slug !== selectedPost) {
-			return { height: '0px', opacity: 0 };
+			return { height: '0px', opacity: 0, marginBottom: 0 };
 		}
-		return { height: 'fit-content', opacity: 1 };
+		if (selectedPost) {
+			return { height: 'fit-content', opacity: 1, marginBottom: 0 };
+		}
+		return { height: 'fit-content', opacity: 1, marginBottom: 40 };
 	};
 
 	return (
 		<>
 			{loading ? null : (
-				<div className="flex flex-col gap-10">
+				<>
 					{blogPosts.objects.map(post => (
 						<motion.div
 							key={post.slug}
-							initial={{ height: 'fit-content', opacity: 1 }}
+							initial={{ height: 'fit-content', opacity: 1, marginBottom: 40 }}
 							animate={isHidden(post.slug)}
 							transition={{ duration: 0.5 }}
 						>
@@ -116,7 +119,7 @@ const Blog = () => {
 							</div>
 						</motion.div>
 					))}
-				</div>
+				</>
 			)}
 		</>
 	);
