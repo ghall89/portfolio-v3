@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { format } from 'date-fns';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -30,6 +30,7 @@ const Blog = () => {
 	const [loading, setLoading] = useState(true);
 	const [selectedPost, setSelectedPost] = useState();
 	const [offset, setOffset] = useState(0);
+	const [pageCount, setPageCount] = useState([]);
 
 	useEffect(() => {
 		getBlogPosts(setBlogPosts, setLoading, offset);
@@ -58,6 +59,14 @@ const Blog = () => {
 		}
 		return { height: 'fit-content', opacity: 1, marginBottom: 40 };
 	};
+
+	useEffect(() => {
+		const arr = [];
+		for (let i = 0; i < Math.ceil(blogPosts?.total / 5); i++) {
+			arr.push({ page: i + 1, active: i + 1 === (offset + 5) / 5 });
+		}
+		setPageCount(arr);
+	}, [blogPosts, offset]);
 
 	return (
 		<>
@@ -123,19 +132,32 @@ const Blog = () => {
 							</div>
 						</motion.div>
 					))}
-					{selectedPost ? null : (
+					{selectedPost || pageCount.length === 1 ? null : (
 						<div className="flex flex-row">
-							{offset === 0 ? null : (
-								<Button onClick={() => setOffset(offset - 5)}>
-									<FontAwesomeIcon icon={faArrowLeft} /> Prev
-								</Button>
-							)}
-							<div className="flex-grow" />
-							{blogPosts.total <= offset + 5 ? null : (
-								<Button onClick={() => setOffset(offset + 5)}>
-									Next <FontAwesomeIcon icon={faArrowRight} />
-								</Button>
-							)}
+							<Button
+								onClick={() => setOffset(offset - 5)}
+								disabled={() => offset === 0}
+							>
+								<FontAwesomeIcon icon={faArrowLeft} />
+							</Button>
+							<div className="flex-grow flex flex-row justify-center items-center">
+								{pageCount.map(page => (
+									<div
+										onClick={() => setOffset((page.page - 1) * 5)}
+										className={`rounded-full h-2 w-2 m-1 ${
+											page.active === true
+												? 'bg-sky-400'
+												: 'border-2 border-sky-400'
+										}`}
+									/>
+								))}
+							</div>
+							<Button
+								onClick={() => setOffset(offset + 5)}
+								disabled={() => blogPosts.total <= offset + 5}
+							>
+								<FontAwesomeIcon icon={faArrowRight} />
+							</Button>
 						</div>
 					)}
 				</>
