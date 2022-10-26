@@ -12,7 +12,6 @@ const getBlogPosts = async (setBlogPosts, setLoading, offset) => {
 			type: 'blog-posts',
 			locale: 0,
 		})
-		.props('slug,title,content,metadata,locale')
 		.limit(5)
 		.skip(offset);
 	setBlogPosts(data);
@@ -27,7 +26,6 @@ const getBlogPost = async (setBlogPost, setLoading, slug) => {
 				$eq: slug,
 			},
 		})
-		.props('slug,title,content,metadata')
 		.limit(1)
 		.then(response => {
 			if (response) {

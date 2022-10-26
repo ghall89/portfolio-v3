@@ -30,8 +30,8 @@ const Post = ({ slug }) => {
 							<span className="text-sky-800 dark:text-sky-200">
 								<FontAwesomeIcon icon={faCalendarAlt} /> Posted on{' '}
 								{format(
-									new Date(blogPost.objects[0].metadata.post_date),
-									'MMM Lo, y',
+									new Date(blogPost.objects[0].published_at),
+									'MMM do, y',
 								)}
 							</span>
 							<article>

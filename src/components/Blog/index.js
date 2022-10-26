@@ -83,7 +83,7 @@ const Blog = () => {
 								<H3>{post.title}</H3>
 								<span className="text-sky-800 dark:text-sky-200">
 									<FontAwesomeIcon icon={faCalendarAlt} /> Posted on{' '}
-									{format(new Date(post.metadata.post_date), 'MMM Lo, y')}
+									{format(new Date(post.published_at), 'MMM do, y')}
 								</span>
 								<motion.article
 									className={`transition-[margin] mb-7 overflow-hidden ${setGradient(
