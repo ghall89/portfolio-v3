@@ -22,11 +22,11 @@ const TextField = ({ name }) => (
 	/>
 );
 
-const Button = ({ onClick, children, className, disabled }) => (
+const Button = ({ onClick, children, className, ...rest }) => (
 	<button
 		className={`transition-all m-2 bg-sky-400 rounded-md px-6 py-2 text-white enabled:hover:bg-sky-300 active:bg-sky-500 disabled:opacity-10 ${className}`}
 		onClick={onClick}
-		disabled={disabled()}
+		{...rest}
 	>
 		{children}
 	</button>
