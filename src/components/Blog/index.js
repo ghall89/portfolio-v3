@@ -136,7 +136,7 @@ const Blog = () => {
 						<div className="flex flex-row">
 							<Button
 								onClick={() => setOffset(offset - 5)}
-								disabled={() => offset === 0}
+								disabled={offset === 0 ? true : false}
 							>
 								<FontAwesomeIcon icon={faArrowLeft} />
 							</Button>
@@ -154,7 +154,7 @@ const Blog = () => {
 							</div>
 							<Button
 								onClick={() => setOffset(offset + 5)}
-								disabled={() => blogPosts.total <= offset + 5}
+								disabled={blogPosts.total <= offset + 5 ? true : false}
 							>
 								<FontAwesomeIcon icon={faArrowRight} />
 							</Button>
