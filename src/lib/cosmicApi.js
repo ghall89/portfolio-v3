@@ -6,13 +6,13 @@ const bucket = api.bucket({
 	read_key: process.env.BUCKET_READ_KEY,
 });
 
-const getBlogPosts = async (setBlogPosts, setLoading, offset) => {
+const getBlogPosts = async (setBlogPosts, setLoading, offset, limit) => {
 	const data = await bucket.objects
 		.find({
 			type: 'blog-posts',
 			locale: 0,
 		})
-		.limit(5)
+		.limit(limit)
 		.skip(offset);
 	setBlogPosts(data);
 	setLoading(false);

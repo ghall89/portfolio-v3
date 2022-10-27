@@ -25,6 +25,8 @@ const linkAnimation = {
 	transition: { type: 'ease-in-out', duration: 0.5 },
 };
 
+const itemsPerPage = 4;
+
 const Blog = () => {
 	const [blogPosts, setBlogPosts] = useState();
 	const [loading, setLoading] = useState(true);
@@ -33,7 +35,7 @@ const Blog = () => {
 	const [pageCount, setPageCount] = useState([]);
 
 	useEffect(() => {
-		getBlogPosts(setBlogPosts, setLoading, offset);
+		getBlogPosts(setBlogPosts, setLoading, offset, itemsPerPage);
 	}, [offset]);
 
 	const setGradient = slug => {
@@ -60,14 +62,6 @@ const Blog = () => {
 		return { height: 'fit-content', opacity: 1, marginBottom: 40 };
 	};
 
-	useEffect(() => {
-		const arr = [];
-		for (let i = 0; i < Math.ceil(blogPosts?.total / 5); i++) {
-			arr.push({ page: i + 1, active: i + 1 === (offset + 5) / 5 });
-		}
-		setPageCount(arr);
-	}, [blogPosts, offset]);
-
 	return (
 		<>
 			{loading ? null : (
@@ -75,7 +69,11 @@ const Blog = () => {
 					{blogPosts.objects.map(post => (
 						<motion.div
 							key={post.slug}
-							initial={{ height: 'fit-content', opacity: 1, marginBottom: 40 }}
+							initial={{
+								height: 'fit-content',
+								opacity: 1,
+								marginBottom: 40,
+							}}
 							animate={isHidden(post.slug)}
 							transition={{ duration: 0.5 }}
 						>
@@ -135,7 +133,7 @@ const Blog = () => {
 					{selectedPost || pageCount.length === 1 ? null : (
 						<div className="flex flex-row">
 							<Button
-								onClick={() => setOffset(offset - 5)}
+								onClick={() => setOffset(offset - itemsPerPage)}
 								disabled={offset === 0 ? true : false}
 							>
 								<FontAwesomeIcon icon={faArrowLeft} />
@@ -143,7 +141,7 @@ const Blog = () => {
 							<div className="flex-grow flex flex-row justify-center items-center">
 								{pageCount.map(page => (
 									<div
-										onClick={() => setOffset((page.page - 1) * 5)}
+										onClick={() => setOffset((page.page - 1) * itemsPerPage)}
 										className={`rounded-full h-2 w-2 m-1 ${
 											page.active === true
 												? 'bg-sky-400'
@@ -153,8 +151,10 @@ const Blog = () => {
 								))}
 							</div>
 							<Button
-								onClick={() => setOffset(offset + 5)}
-								disabled={blogPosts.total <= offset + 5 ? true : false}
+								onClick={() => setOffset(offset + itemsPerPage)}
+								disabled={
+									blogPosts.total <= offset + itemsPerPage ? true : false
+								}
 							>
 								<FontAwesomeIcon icon={faArrowRight} />
 							</Button>
