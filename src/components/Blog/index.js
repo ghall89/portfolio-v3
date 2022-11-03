@@ -36,6 +36,7 @@ const Blog = () => {
 
 	useEffect(() => {
 		getBlogPosts(setBlogPosts, setLoading, offset, itemsPerPage);
+		window.scrollTo({ top: 0 });
 	}, [offset]);
 
 	const setGradient = slug => {
