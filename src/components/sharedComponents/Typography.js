@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 const linkClasses =
-	'transition-colors text-sky-500 hover:text-sky-800 cursor-pointer';
+	'transition-colors text-sky-500 hover:text-sky-400 cursor-pointer';
 
 const H1 = ({ children, className }) => (
 	<h1 className={`font-medium text-4xl ${className}`}>{children}</h1>

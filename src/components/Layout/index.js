@@ -42,22 +42,18 @@ const Layout = ({ children }) => {
 
 	return (
 		<div className={`${enableDarkMode()}`}>
-			<div className="min-h-screen flex flex-col dark:bg-slate-700 dark:text-white">
-				<header className="p-10 mb-10 border-b w-full bg-slate-100 dark:bg-slate-800 dark:border-slate-600">
+			<div className="min-h-screen flex flex-col bg-slate-700 text-white">
+				<header className="p-10 mb-10 border-b w-full bg-slate-800 border-slate-600">
 					<div className="max-w-6xl	mx-auto px-8 flex flex-col md:flex-row">
 						{/* <button
-              className="mx-6 text-lg dark:text-white"
+              className="mx-6 text-lg text-white"
               onClick={() => handleDarkModeToggle()}
             >
               <FontAwesomeIcon icon={darkModeIcon()} />
             </button> */}
 						<div>
-							<h1 className="text-3xl text-slate-600 dark:text-slate-300">
-								Graham Hall
-							</h1>
-							<h2 className="text-xl text-slate-500 dark:text-slate-200">
-								Web Developer
-							</h2>
+							<h1 className="text-3xl text-slate-300">Graham Hall</h1>
+							<h2 className="text-xl  text-slate-200">Web Developer</h2>
 						</div>
 						<div className="flex-grow" />
 						<Nav />

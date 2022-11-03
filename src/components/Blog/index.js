@@ -79,9 +79,9 @@ const Blog = () => {
 							animate={isHidden(post.slug)}
 							transition={{ duration: 0.5 }}
 						>
-							<div className="p-3 w-full border rounded-md dark:border-slate-500 overflow-hidden">
+							<div className="p-3 w-full border rounded-md border-slate-500 overflow-hidden">
 								<H3>{post.title}</H3>
-								<span className="text-sky-800 dark:text-sky-200">
+								<span className="text-slate-300">
 									<FontAwesomeIcon icon={faCalendarAlt} /> Posted on{' '}
 									{format(new Date(post.published_at), 'MMM do, y')}
 								</span>
