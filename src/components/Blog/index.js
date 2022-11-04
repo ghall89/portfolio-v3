@@ -67,11 +67,20 @@ const Blog = () => {
 		setPageCount(arr);
 	}, [blogPosts, offset]);
 
+	const handleReadMore = slug => {
+		setSelectedPost(slug);
+		setTimeout(window.scroll({ top: 0, behavior: 'smooth' }), 1000);
+	};
+
 	return (
 		<>
 			{loading ? null : (
 				<>
-					<div class="grid grid-cols-1 divide-y divide-slate-600">
+					<div
+						className={`grid grid-cols-1 ${
+							selectedPost ? null : 'divide-y divide-slate-600'
+						}`}
+					>
 						{blogPosts.objects.map(post => (
 							<motion.div
 								key={post.id}
@@ -106,7 +115,7 @@ const Blog = () => {
 												exit="exit"
 												transition="transition"
 											>
-												<LinkButton onClick={() => setSelectedPost(post.slug)}>
+												<LinkButton onClick={() => handleReadMore(post.slug)}>
 													<FontAwesomeIcon icon={faUpRightFromSquare} /> Read
 													More...
 												</LinkButton>
