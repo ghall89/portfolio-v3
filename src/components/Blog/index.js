@@ -68,17 +68,8 @@ const Blog = () => {
 				<>
 					{blogPosts.objects.map(post => (
 						<motion.div
-<<<<<<< HEAD
-							key={post.slug}
-							initial={{
-								height: 'fit-content',
-								opacity: 1,
-								marginBottom: 40,
-							}}
-=======
 							key={post.id}
 							initial={{ height: 'fit-content', opacity: 1, marginBottom: 40 }}
->>>>>>> main
 							animate={isHidden(post.slug)}
 							transition={{ duration: 0.5 }}
 						>
