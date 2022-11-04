@@ -51,7 +51,7 @@ const Layout = ({ children }) => {
             >
               <FontAwesomeIcon icon={darkModeIcon()} />
             </button> */}
-						<div>
+						<div className="text-center md:text-left">
 							<h1 className="text-3xl text-slate-300">Graham Hall</h1>
 							<h2 className="text-xl  text-slate-200">Web Developer</h2>
 						</div>

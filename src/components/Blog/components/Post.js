@@ -7,36 +7,31 @@ import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import { getBlogPost } from '../../../lib/cosmicApi';
 
 import { H3 } from '../../sharedComponents/Typography';
+import { BlogTitle, BlogDate } from './Typography';
 import ParsedJSX from '../../sharedComponents/ParsedJsx';
 import FourOhFour from '../../404';
 
 const Post = ({ slug }) => {
-	const [blogPost, setBlogPost] = useState();
+	const [post, setPost] = useState();
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		getBlogPost(setBlogPost, setLoading, slug);
+		getBlogPost(setPost, setLoading, slug);
 	}, [slug]);
 
 	return (
 		<>
 			{loading ? null : (
 				<>
-					{!blogPost ? (
+					{!post ? (
 						<FourOhFour />
 					) : (
 						<>
-							<H3>{blogPost.objects[0].title}</H3>
-							<span className="text-slate-300">
-								{' '}
-								<FontAwesomeIcon icon={faCalendarAlt} /> Posted on{' '}
-								{format(
-									new Date(blogPost.objects[0].published_at),
-									'MMM do, y',
-								)}
-							</span>
+							<BlogTitle>{post.title}</BlogTitle>
+							<BlogDate date={post.published_at} />
+
 							<article>
-								<ParsedJSX input={blogPost.objects[0].content} />
+								<ParsedJSX input={post.content} />
 							</article>
 						</>
 					)}

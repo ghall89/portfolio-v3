@@ -1,11 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
-import { format } from 'date-fns';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faAngleLeft,
-	faCalendarAlt,
 	faLink,
 	faUpRightFromSquare,
 	faArrowLeft,
@@ -17,6 +15,7 @@ import ParsedJSX from '../sharedComponents/ParsedJsx';
 
 import { H3, InlineLink, LinkButton } from '../sharedComponents/Typography';
 import { Button } from '../sharedComponents/Inputs';
+import { BlogTitle, BlogDate } from './components/Typography';
 
 const linkAnimation = {
 	initial: { opacity: 0 },
@@ -74,17 +73,14 @@ const Blog = () => {
 				<>
 					{blogPosts.objects.map(post => (
 						<motion.div
-							key={post.slug}
+							key={post.id}
 							initial={{ height: 'fit-content', opacity: 1, marginBottom: 40 }}
 							animate={isHidden(post.slug)}
 							transition={{ duration: 0.5 }}
 						>
 							<div className="p-3 w-full border rounded-md border-slate-500 overflow-hidden">
-								<H3>{post.title}</H3>
-								<span className="text-slate-300">
-									<FontAwesomeIcon icon={faCalendarAlt} /> Posted on{' '}
-									{format(new Date(post.published_at), 'MMM do, y')}
-								</span>
+								<BlogTitle>{post.title}</BlogTitle>
+								<BlogDate date={post.published_at} />
 								<motion.article
 									className={`transition-[margin] mb-7 overflow-hidden ${setGradient(
 										post.slug,

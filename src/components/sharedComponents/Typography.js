@@ -17,7 +17,7 @@ const H4 = ({ children, className }) => (
 );
 
 const P = ({ children, className }) => (
-	<p className={`my-5 ${className}`}>{children}</p>
+	<p className={`my-5 text-lg ${className}`}>{children}</p>
 );
 
 const List = ({ children }) => <ul className="list-disc pl-10">{children}</ul>;
