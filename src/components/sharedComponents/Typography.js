@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 const linkClasses =
-	'transition-colors text-sky-500 hover:text-sky-800 cursor-pointer';
+	'transition-colors text-sky-500 hover:text-sky-400 cursor-pointer';
 
 const H1 = ({ children, className }) => (
 	<h1 className={`font-medium text-4xl ${className}`}>{children}</h1>
@@ -17,7 +17,7 @@ const H4 = ({ children, className }) => (
 );
 
 const P = ({ children, className }) => (
-	<p className={`my-5 ${className}`}>{children}</p>
+	<p className={`my-5 text-lg ${className}`}>{children}</p>
 );
 
 const List = ({ children }) => <ul className="list-disc pl-10">{children}</ul>;

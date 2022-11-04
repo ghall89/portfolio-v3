@@ -9,7 +9,7 @@ import ParsedJSX from '../sharedComponents/ParsedJsx';
 
 const PortfolioButton = ({ href, children }) => (
 	<Link href={href} target="_blank">
-		<span className="text-blue-400 bg-white shadow py-1 w-full text-center rounded-md hover:bg-blue-400 hover:text-white transition-colors cursor-pointer dark:bg-slate-500 dark:text-sky-200 dark:hover:bg-sky-200 dark:hover:text-slate-500">
+		<span className="shadow py-1 w-full text-center rounded-md transition-colors cursor-pointer bg-slate-500 text-sky-50 hover:bg-sky-500">
 			{children}
 		</span>
 	</Link>
@@ -30,7 +30,7 @@ const Portfolio = () => {
 					{portfolio.map(item => (
 						<div
 							key={item.slug}
-							className="p-4 bg-slate-100 border rounded-md flex flex-col dark:bg-slate-600 dark:border-slate-500"
+							className="p-4 bg-slate-100 border rounded-md flex flex-col bg-slate-600 border-slate-500"
 						>
 							<div className="mb-4">
 								<Image
@@ -41,7 +41,7 @@ const Portfolio = () => {
 									width={1280 / 2}
 								/>
 							</div>
-							<H4 className="text-gray-600">{item.title}</H4>
+							<H4 className="text-slate-300">{item.title}</H4>
 							<div className="flex-grow">
 								<ParsedJSX input={item.content} />
 							</div>

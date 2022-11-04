@@ -18,7 +18,7 @@ const getBlogPosts = async (setBlogPosts, setLoading, offset, limit) => {
 	setLoading(false);
 };
 
-const getBlogPost = async (setBlogPost, setLoading, slug) => {
+const getBlogPost = async (setPost, setLoading, slug) => {
 	const data = await bucket.objects
 		.find({
 			type: 'blog-posts',
@@ -29,7 +29,7 @@ const getBlogPost = async (setBlogPost, setLoading, slug) => {
 		.limit(1)
 		.then(response => {
 			if (response) {
-				setBlogPost(response);
+				setPost(response.objects[0]);
 			}
 			setLoading(false);
 		});
