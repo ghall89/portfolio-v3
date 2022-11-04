@@ -71,63 +71,69 @@ const Blog = () => {
 		<>
 			{loading ? null : (
 				<>
-					{blogPosts.objects.map(post => (
-						<motion.div
-							key={post.id}
-							initial={{ height: 'fit-content', opacity: 1, marginBottom: 40 }}
-							animate={isHidden(post.slug)}
-							transition={{ duration: 0.5 }}
-						>
-							<div className="p-3 w-full border rounded-md border-slate-500 overflow-hidden">
-								<BlogTitle>{post.title}</BlogTitle>
-								<BlogDate date={post.published_at} />
-								<motion.article
-									className={`transition-[margin] mb-7 overflow-hidden ${setGradient(
-										post.slug,
-									)}`}
-									initial={{ height: '208px' }}
-									animate={isExpanded(post.slug)}
-									transition={{ duration: 0.5 }}
-								>
-									<ParsedJSX input={post.content} />
-								</motion.article>
-								<AnimatePresence mode="wait">
-									{!selectedPost || selectedPost !== post.slug ? (
-										<motion.div
-											key="read-more"
-											variants={linkAnimation}
-											initial="initial"
-											animate="animate"
-											exit="exit"
-											transition="transition"
-										>
-											<LinkButton onClick={() => setSelectedPost(post.slug)}>
-												<FontAwesomeIcon icon={faUpRightFromSquare} /> Read
-												More...
-											</LinkButton>
-										</motion.div>
-									) : (
-										<motion.div
-											key="close"
-											className="flex flex-row gap-5"
-											variants={linkAnimation}
-											initial="initial"
-											animate="animate"
-											exit="exit"
-											transition="transition"
-										>
-											<LinkButton onClick={() => setSelectedPost()}>
-												<FontAwesomeIcon icon={faAngleLeft} /> Back
-											</LinkButton>
-											<InlineLink href={`/blog/${post.slug}`}>
-												<FontAwesomeIcon icon={faLink} /> Permalink
-											</InlineLink>
-										</motion.div>
-									)}
-								</AnimatePresence>
-							</div>
-						</motion.div>
-					))}
+					<div class="grid grid-cols-1 divide-y divide-slate-600">
+						{blogPosts.objects.map(post => (
+							<motion.div
+								key={post.id}
+								initial={{
+									height: 'fit-content',
+									opacity: 1,
+									marginBottom: 40,
+								}}
+								animate={isHidden(post.slug)}
+								transition={{ duration: 0.5 }}
+							>
+								<div className="py-3 w-full overflow-hidden">
+									<BlogTitle>{post.title}</BlogTitle>
+									<BlogDate date={post.published_at} />
+									<motion.article
+										className={`transition-[margin] mb-7 overflow-hidden ${setGradient(
+											post.slug,
+										)}`}
+										initial={{ height: '208px' }}
+										animate={isExpanded(post.slug)}
+										transition={{ duration: 0.5 }}
+									>
+										<ParsedJSX input={post.content} />
+									</motion.article>
+									<AnimatePresence mode="wait">
+										{!selectedPost || selectedPost !== post.slug ? (
+											<motion.div
+												key="read-more"
+												variants={linkAnimation}
+												initial="initial"
+												animate="animate"
+												exit="exit"
+												transition="transition"
+											>
+												<LinkButton onClick={() => setSelectedPost(post.slug)}>
+													<FontAwesomeIcon icon={faUpRightFromSquare} /> Read
+													More...
+												</LinkButton>
+											</motion.div>
+										) : (
+											<motion.div
+												key="close"
+												className="flex flex-row gap-5"
+												variants={linkAnimation}
+												initial="initial"
+												animate="animate"
+												exit="exit"
+												transition="transition"
+											>
+												<LinkButton onClick={() => setSelectedPost()}>
+													<FontAwesomeIcon icon={faAngleLeft} /> Back
+												</LinkButton>
+												<InlineLink href={`/blog/${post.slug}`}>
+													<FontAwesomeIcon icon={faLink} /> Permalink
+												</InlineLink>
+											</motion.div>
+										)}
+									</AnimatePresence>
+								</div>
+							</motion.div>
+						))}
+					</div>
 					{selectedPost || pageCount.length === 1 ? null : (
 						<div className="flex flex-row">
 							<Button
