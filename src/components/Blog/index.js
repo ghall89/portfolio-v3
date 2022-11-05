@@ -155,10 +155,10 @@ const Blog = () => {
 								{pageCount.map(page => (
 									<div
 										onClick={() => setOffset((page.page - 1) * 5)}
-										className={`rounded-full h-2 w-2 m-1 ${
+										className={`rounded-full h-2 w-2 m-1  ${
 											page.active === true
-												? 'bg-sky-400'
-												: 'border-2 border-sky-400'
+												? 'bg-white'
+												: 'border-2 border-white'
 										}`}
 									/>
 								))}

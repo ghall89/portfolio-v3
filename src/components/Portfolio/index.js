@@ -29,7 +29,7 @@ const Portfolio = () => {
 				Check out some of the projects I&apos;ve built...
 			</H3>
 			{loading ? null : (
-				<div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+				<div className="mt-8 grid grid-rows-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 					{portfolio.map(item => (
 						<div
 							key={item.slug}

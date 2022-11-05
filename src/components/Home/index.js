@@ -10,7 +10,7 @@ const Home = () => (
 				Rhode Island.
 			</H3>
 			<div className="flex flex-col md:flex-row">
-				<div className="mx-auto md:mr-9 p-6 min-w-fit">
+				<div className="mx-auto md:mr-9 p-6 min-w-fit rotate-[-3deg]">
 					<Image
 						className="rounded"
 						src="/img/portrait_y8yaqq.jpg"
