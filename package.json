@@ -22,7 +22,6 @@
     "react-dom": "18.2.0",
     "react-jsx-parser": "^1.29.0",
     "save": "^2.9.0",
-    "swiper": "^8.4.4",
     "tailwind-gradient-mask-image": "^1.0.0"
   },
   "devDependencies": {

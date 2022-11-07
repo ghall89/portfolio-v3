@@ -15,7 +15,7 @@ const PortfolioButton = ({ href, children }) => (
 const PortfolioCard = ({ item }) => (
 	<div
 		key={item.slug}
-		className="p-4 w-[352px] h-[523px] mx-auto bg-slate-100 border rounded-md flex flex-col bg-slate-600 border-slate-500"
+		className="p-4 max-w-[352px] mx-auto bg-slate-100 border rounded-md flex flex-col bg-slate-600 border-slate-500"
 	>
 		<div className="mb-4">
 			<Image
