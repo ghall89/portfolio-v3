@@ -24,7 +24,7 @@ const TextField = ({ name }) => (
 
 const Button = ({ onClick, children, className, disabled }) => (
 	<button
-		className={`transition-all m-2 bg-sky-600 rounded-md px-6 py-2 text-white enabled:hover:bg-sky-500 active:bg-sky-700 disabled:opacity-10 ${className}`}
+		className={`transition-all m-2 drop-shadow-lg bg-gradient-to-b from-sky-700 to-indigo-500 rounded-md px-6 py-2 text-white bg-gradient-to-r enabled:hover:from-sky-600 enabled:hover:to-indigo-400 disabled:opacity-10 ${className}`}
 		onClick={onClick}
 		disabled={disabled ? disabled : false}
 	>

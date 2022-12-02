@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
+import Image from 'next/image';
+
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -103,6 +105,16 @@ const Blog = () => {
 										animate={isExpanded(post.slug)}
 										transition={{ duration: 0.5 }}
 									>
+										{post.thumbnail === '' ? null : (
+											<div className="w-full pt-5 flex justify-center">
+												<Image
+													className="rounded"
+													src={post.thumbnail}
+													height={400}
+													width={600}
+												/>
+											</div>
+										)}
 										<ParsedJSX input={post.content} />
 									</motion.article>
 									<AnimatePresence mode="wait">
@@ -155,10 +167,10 @@ const Blog = () => {
 								{pageCount.map(page => (
 									<div
 										onClick={() => setOffset((page.page - 1) * 5)}
-										className={`rounded-full h-2 w-2 m-1 ${
+										className={`rounded-full h-2 w-2 m-1  ${
 											page.active === true
-												? 'bg-sky-400'
-												: 'border-2 border-sky-400'
+												? 'bg-white'
+												: 'border-2 border-white'
 										}`}
 									/>
 								))}
