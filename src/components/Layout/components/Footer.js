@@ -34,6 +34,7 @@ const Footer = () => (
 				/>
 				<SocialLink
 					href="https://home.social/@ghalldev"
+					rel="me"
 					icon={faMastodon}
 					label="ghalldev"
 				/>
