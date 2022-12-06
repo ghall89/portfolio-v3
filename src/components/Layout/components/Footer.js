@@ -7,8 +7,8 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { faMugHot } from '@fortawesome/free-solid-svg-icons';
 
-const SocialLink = ({ href, icon, label }) => (
-	<a href={href} target="_blank" rel="noreferrer">
+const SocialLink = ({ href, icon, label, rel }) => (
+	<a href={href} target="_blank" rel={rel ? rel : 'noreferrer'}>
 		<div className="group flex flex-nowrap transition-colors text-sky-100 hover:text-sky-200 cursor-pointer">
 			<FontAwesomeIcon icon={icon} />
 			<span className="pl-2 text-base transition-opacity md:opacity-0 group-hover:opacity-100 ">
