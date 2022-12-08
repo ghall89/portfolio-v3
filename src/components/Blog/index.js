@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
+import Head from 'next/head';
 
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -76,6 +77,9 @@ const Blog = () => {
 
 	return (
 		<>
+			<Head>
+				<title>ghall.dev - Blog</title>
+			</Head>
 			{loading ? null : (
 				<>
 					<div
