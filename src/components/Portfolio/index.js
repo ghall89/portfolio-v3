@@ -1,3 +1,5 @@
+import Head from 'next/head';
+
 import { useEffect, useState } from 'react';
 
 import { getPortfolio } from '../../lib/cosmicApi';
@@ -14,6 +16,9 @@ const Portfolio = () => {
 
 	return (
 		<>
+			<Head>
+				<title>ghall.dev - Projects</title>
+			</Head>
 			<H3 className="text-center font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-purple-400 to-yellow-400">
 				Check out some of the projects I&apos;ve built...
 			</H3>
