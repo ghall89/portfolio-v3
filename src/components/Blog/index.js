@@ -1,4 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
+import Image from 'next/image';
+import Head from 'next/head';
+
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -62,67 +65,105 @@ const Blog = () => {
 		return { height: 'fit-content', opacity: 1, marginBottom: 40 };
 	};
 
+
+	useEffect(() => {
+		const arr = [];
+		for (let i = 0; i < Math.ceil(blogPosts?.total / 5); i++) {
+			arr.push({ page: i + 1, active: i + 1 === (offset + 5) / 5 });
+		}
+		setPageCount(arr);
+	}, [blogPosts, offset]);
+
+	const handleReadMore = slug => {
+		setSelectedPost(slug);
+		setTimeout(window.scroll({ top: 0, behavior: 'smooth' }), 1000);
+	};
+
+
 	return (
 		<>
+			<Head>
+				<title>ghall.dev - Blog</title>
+			</Head>
 			{loading ? null : (
 				<>
-					{blogPosts.objects.map(post => (
-						<motion.div
-							key={post.id}
-							initial={{ height: 'fit-content', opacity: 1, marginBottom: 40 }}
-							animate={isHidden(post.slug)}
-							transition={{ duration: 0.5 }}
-						>
-							<div className="p-3 w-full border rounded-md border-slate-500 overflow-hidden">
-								<BlogTitle>{post.title}</BlogTitle>
-								<BlogDate date={post.published_at} />
-								<motion.article
-									className={`transition-[margin] mb-7 overflow-hidden ${setGradient(
-										post.slug,
-									)}`}
-									initial={{ height: '208px' }}
-									animate={isExpanded(post.slug)}
-									transition={{ duration: 0.5 }}
-								>
-									<ParsedJSX input={post.content} />
-								</motion.article>
-								<AnimatePresence mode="wait">
-									{!selectedPost || selectedPost !== post.slug ? (
-										<motion.div
-											key="read-more"
-											variants={linkAnimation}
-											initial="initial"
-											animate="animate"
-											exit="exit"
-											transition="transition"
-										>
-											<LinkButton onClick={() => setSelectedPost(post.slug)}>
-												<FontAwesomeIcon icon={faUpRightFromSquare} /> Read
-												More...
-											</LinkButton>
-										</motion.div>
-									) : (
-										<motion.div
-											key="close"
-											className="flex flex-row gap-5"
-											variants={linkAnimation}
-											initial="initial"
-											animate="animate"
-											exit="exit"
-											transition="transition"
-										>
-											<LinkButton onClick={() => setSelectedPost()}>
-												<FontAwesomeIcon icon={faAngleLeft} /> Back
-											</LinkButton>
-											<InlineLink href={`/blog/${post.slug}`}>
-												<FontAwesomeIcon icon={faLink} /> Permalink
-											</InlineLink>
-										</motion.div>
-									)}
-								</AnimatePresence>
-							</div>
-						</motion.div>
-					))}
+					<div
+						className={`grid grid-cols-1 ${
+							selectedPost ? null : 'divide-y divide-slate-600'
+						}`}
+					>
+						{blogPosts.objects.map(post => (
+							<motion.div
+								key={post.id}
+								initial={{
+									height: 'fit-content',
+									opacity: 1,
+									marginBottom: 40,
+								}}
+								animate={isHidden(post.slug)}
+								transition={{ duration: 0.5 }}
+							>
+								<div className="py-3 w-full overflow-hidden">
+									<BlogTitle>{post.title}</BlogTitle>
+									<BlogDate date={post.published_at} />
+									<motion.article
+										className={`transition-[margin] mb-7 overflow-hidden ${setGradient(
+											post.slug,
+										)}`}
+										initial={{ height: '208px' }}
+										animate={isExpanded(post.slug)}
+										transition={{ duration: 0.5 }}
+									>
+										{post.thumbnail === '' ? null : (
+											<div className="w-full pt-5 flex justify-center">
+												<Image
+													className="rounded"
+													src={post.thumbnail}
+													height={400}
+													width={600}
+												/>
+											</div>
+										)}
+										<ParsedJSX input={post.content} />
+									</motion.article>
+									<AnimatePresence mode="wait">
+										{!selectedPost || selectedPost !== post.slug ? (
+											<motion.div
+												key="read-more"
+												variants={linkAnimation}
+												initial="initial"
+												animate="animate"
+												exit="exit"
+												transition="transition"
+											>
+												<LinkButton onClick={() => handleReadMore(post.slug)}>
+													<FontAwesomeIcon icon={faUpRightFromSquare} /> Read
+													More...
+												</LinkButton>
+											</motion.div>
+										) : (
+											<motion.div
+												key="close"
+												className="flex flex-row gap-5"
+												variants={linkAnimation}
+												initial="initial"
+												animate="animate"
+												exit="exit"
+												transition="transition"
+											>
+												<LinkButton onClick={() => setSelectedPost()}>
+													<FontAwesomeIcon icon={faAngleLeft} /> Back
+												</LinkButton>
+												<InlineLink href={`/blog/${post.slug}`}>
+													<FontAwesomeIcon icon={faLink} /> Permalink
+												</InlineLink>
+											</motion.div>
+										)}
+									</AnimatePresence>
+								</div>
+							</motion.div>
+						))}
+					</div>
 					{selectedPost || pageCount.length === 1 ? null : (
 						<div className="flex flex-row">
 							<Button
@@ -134,11 +175,12 @@ const Blog = () => {
 							<div className="flex-grow flex flex-row justify-center items-center">
 								{pageCount.map(page => (
 									<div
-										onClick={() => setOffset((page.page - 1) * itemsPerPage)}
-										className={`rounded-full h-2 w-2 m-1 ${
+
+										onClick={() => setOffset((page.page - 1) * 5)}
+										className={`rounded-full h-2 w-2 m-1  ${
 											page.active === true
-												? 'bg-sky-400'
-												: 'border-2 border-sky-400'
+												? 'bg-white'
+												: 'border-2 border-white'
 										}`}
 									/>
 								))}

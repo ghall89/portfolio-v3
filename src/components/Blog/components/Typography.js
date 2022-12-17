@@ -5,7 +5,7 @@ import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import { H3 } from '../../sharedComponents/Typography';
 
 const BlogTitle = ({ children }) => (
-	<H3 className="font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-fuchsia-300 to-cyan-500">
+	<H3 className=" mb-3 font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-green-300 to-orange-400">
 		{children}
 	</H3>
 );

@@ -1,3 +1,5 @@
+import Head from 'next/head';
+
 import { format } from 'date-fns';
 import { useEffect, useState } from 'react';
 
@@ -21,6 +23,9 @@ const Post = ({ slug }) => {
 
 	return (
 		<>
+			<Head>
+				<title>ghall.dev - Blog - {post?.title}</title>
+			</Head>
 			{loading ? null : (
 				<>
 					{!post ? (
