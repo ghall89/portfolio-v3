@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Head from 'next/Head';
+import Head from 'next/head';
 
 import { P, H3, InlineLink } from '../sharedComponents/Typography';
 
